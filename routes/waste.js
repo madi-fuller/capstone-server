@@ -9,6 +9,7 @@ const wasteController = require('../controllers/wasteController');
 
 router
 .route('/')
-.get(wasteController.wasteItems);
+.get(wasteController.wasteItems)
+.post(wasteController.addWasteItem);
 
 module.exports = router;
