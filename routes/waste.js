@@ -7,4 +7,8 @@ router
 .get(wasteController.wasteItems)
 .post(wasteController.addWasteItem);
 
+router
+.route('/:id')
+.put(wasteController.editWasteItem);
+
 module.exports = router;

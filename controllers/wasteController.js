@@ -1,3 +1,5 @@
+const { up } = require("../migrations/20240323190947_create_user_waste_items_tables.js");
+
 const knex = require("knex")(require("../knexfile.js"));
 
 const wasteItems = async(_req, res) => {
@@ -27,7 +29,48 @@ const addWasteItem = async (req, res) => {
     }
 }
 
+const editWasteItem = async (req, res) => {
+    try {
+        const rowsUpdated = await knex("waste_items")
+        .where({id: req.params.id})
+        .update(req.body);
+
+        if (rowsUpdated === 0) {
+            return res.status(404).json({
+                message: `Waste item with ID ${req.params.id} not found`
+            });
+        }
+        const updatedWasteItem = await knex("waste_items").where({
+            id: req.params.id
+        });
+
+        res.json(updatedWasteItem[0]);
+    } catch (error) {
+        res.status(500).json({
+            message: `Unable to edit data for item with ID ${req.params.id}`
+        });
+    }
+};
+
+const deleteWasteItem = async (req, res) => {
+    try {
+        const rowDeleted = await knex("waste_items")
+        .where({id: req.params.id})
+        .del();
+
+        if(rowDeleted === 0) {
+            return res.status(500).json({ message: `Item with id: ${req.params.id} not found`});
+        }
+        return res.sendStatus(204);
+    } catch (error) {
+        res.status(500).json({message: `Unable to delete warehouse: ${error}`
+        });
+    }
+}
+
 module.exports = {
     wasteItems,
-    addWasteItem
+    addWasteItem,
+    editWasteItem,
+    deleteWasteItem
 };
