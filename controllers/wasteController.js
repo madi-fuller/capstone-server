@@ -11,7 +11,12 @@ const wasteItems = async(_req, res) => {
 
 const addWasteItem = async (req, res) => {
     try {
-        const newWasteItem = {...req.body};
+        const { name, category, quantity } = req.body;
+
+        if (!name || !category || !quantity) {
+            return res.status(400).json({ message: "Missing required fields"});
+        }
+        const newWasteItem = {name, category, quantity};
         const result = await knex("waste_items").insert(newWasteItem);
         const newWasteItemId = result[0];
         const createdWasteItem = await knex("waste_items").where( { id: newWasteItemId});

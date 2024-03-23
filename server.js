@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 5050;
 const wasteRouter = require("./routes/waste.js");
 
 //change this after with ENV file
+app.use(express.json());
 app.use(cors());
 app.use("/api/add-waste", wasteRouter);
 
