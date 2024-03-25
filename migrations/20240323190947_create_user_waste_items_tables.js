@@ -8,6 +8,7 @@ exports.up = function(knex) {
       table.string('name').notNullable(); // Name of the wasted item
       table.string('category'); // Category of the wasted item
       table.integer('quantity').unsigned().notNullable(); // Quantity of the wasted item
+      table.string('unit'); // Unit of measurement for the wasted item
       table.timestamp('created_at').defaultTo(knex.fn.now()); // Timestamp of when the waste item was logged
     });
   };

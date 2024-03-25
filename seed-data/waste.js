@@ -4,6 +4,7 @@ module.exports = [
       name: "Apple",
       category: "Fruit",
       quantity: 1,
+      unit: "Piece",
       created_at: new Date()
     },
     {
@@ -11,6 +12,7 @@ module.exports = [
       name: "Bread",
       category: "Bakery",
       quantity: 2,
+      unit: "Slices",
       created_at: new Date()
     },
     {
@@ -18,6 +20,7 @@ module.exports = [
       name: "Milk",
       category: "Dairy",
       quantity: 1,
+      unit: "Litre",
       created_at: new Date()
     },
     {
@@ -25,6 +28,7 @@ module.exports = [
       name: "Lettuce",
       category: "Vegetable",
       quantity: 1,
+      unit: "Cup",
       created_at: new Date()
     },
     {
@@ -32,6 +36,7 @@ module.exports = [
       name: "Chicken",
       category: "Meat",
       quantity: 1,
+      unit: "Pound",
       created_at: new Date()
     }
   ];
