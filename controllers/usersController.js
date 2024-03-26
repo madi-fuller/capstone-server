@@ -11,8 +11,25 @@ const userProfile = async (req, res) => {
     }
 };
 
+const addUser = async (req, res) => {
+    try {
+        const {name, reason_for_reducing} = req.body;
 
+        if(!name || !reason_for_reducing) {
+            return res.status(400).json({message: "Missing required fields"});
+        }
+        const newUser = {name, reason_for_reducing};
+        const result = await knex("users").insert(newUser);
+        const newUserId = result[0];
+        const createdUser = await knex("users").where({id: newUserId});
+
+        res.status(201).json(createdUser);
+    }catch (error) {
+        res.status(500).json({message: `Unable to add new user: ${error}`});
+    }
+};
 
 module.exports = {
-    userProfile
+    userProfile,
+    addUser
 }

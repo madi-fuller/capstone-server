@@ -8,7 +8,7 @@ exports.up = function(knex) {
       table.string('name').notNullable();
       table.string('password');
       table.string('reason_for_reducing');
-      table.date('registration_date').notNullable();
+      table.timestamp('created_at').defaultTo(knex.fn.now());
     });
   };
   
