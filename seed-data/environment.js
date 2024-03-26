@@ -1,7 +1,7 @@
 module.exports = [
     {
-      food_item_id: 1,
-      food_item_name: "Apple",
+      id: 1,
+      name: "Apple",
       carbon_footprint: 0.2,
       water_usage: 50,
       land_usage: 0.1,
@@ -10,8 +10,8 @@ module.exports = [
       created_at: new Date()
     },
     {
-      food_item_id: 2,
-      food_item_name: "Bread",
+      id: 2,
+      name: "Bread",
       carbon_footprint: 1.0,
       water_usage: 200,
       land_usage: 1.5,
@@ -20,8 +20,8 @@ module.exports = [
       created_at: new Date()
     },
     {
-      food_item_id: 3,
-      food_item_name: "Milk",
+      id: 3,
+      name: "Milk",
       carbon_footprint: 0.5,
       water_usage: 150,
       land_usage: 0.3,
@@ -30,8 +30,8 @@ module.exports = [
       created_at: new Date()
     },
     {
-      food_item_id: 4,
-      food_item_name: "Lettuce",
+      id: 4,
+      name: "Lettuce",
       carbon_footprint: 0.8,
       water_usage: 100,
       land_usage: 0.5,
@@ -40,8 +40,8 @@ module.exports = [
       created_at: new Date()
     },
     {
-      food_item_id: 5,
-      food_item_name: "Chicken",
+      id: 5,
+      name: "Chicken",
       carbon_footprint: 2.0,
       water_usage: 300,
       land_usage: 2.0,

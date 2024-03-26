@@ -10,7 +10,7 @@ module.exports = [
     {
       id: 2,
       name: "Bread",
-      category: "Bakery",
+      category: "Grain",
       quantity: 2,
       unit: "Slices",
       created_at: new Date()
