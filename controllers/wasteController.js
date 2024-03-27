@@ -73,9 +73,23 @@ const deleteWasteItem = async (req, res) => {
   }
 };
 
+const wastedItemsByCategory = async (req, res) => {
+try {
+    const categoryData = await knex("waste_items")
+    .select("category")
+    .count("* as count")
+    .groupBy("category");
+
+    res.status(200).json(categoryData);
+} catch(error) {
+    res.status(500).json({message: `Unable to count by category:, ${error}`})
+}
+}
+
 module.exports = {
   wasteItems,
   addWasteItem,
   editWasteItem,
   deleteWasteItem,
+  wastedItemsByCategory
 };

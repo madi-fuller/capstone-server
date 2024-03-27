@@ -8,6 +8,10 @@ router
   .post(wasteController.addWasteItem);
 
 router
+  .route("/data")
+  .get(wasteController.wastedItemsByCategory);
+
+router
   .route("/:id")
   .put(wasteController.editWasteItem)
   .delete(wasteController.deleteWasteItem);
