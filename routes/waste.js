@@ -8,9 +8,12 @@ router
   .post(wasteController.addWasteItem);
 
 router
-  .route("/data")
+  .route("/pie-data")
   .get(wasteController.wastedItemsByCategory);
 
+router
+  .route("/line-data")
+  .get(wasteController.wastedItemsByDate);
 router
   .route("/:id")
   .put(wasteController.editWasteItem)

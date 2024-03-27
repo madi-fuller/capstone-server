@@ -73,23 +73,49 @@ const deleteWasteItem = async (req, res) => {
   }
 };
 
-const wastedItemsByCategory = async (req, res) => {
+const wastedItemsByCategory = async (_req, res) => {
 try {
     const categoryData = await knex("waste_items")
     .select("category")
     .count("* as count")
     .groupBy("category");
 
-    res.status(200).json(categoryData);
+    const formattedData = [['Category', 'Quantity']];
+    categoryData.forEach(item => {
+        formattedData.push([item.category, item.count]);
+    });
+
+    res.status(200).json(formattedData);
 } catch(error) {
     res.status(500).json({message: `Unable to count by category:, ${error}`})
 }
 }
+
+const wastedItemsByDate = async (_req, res) => {
+    try {
+    const dateData = await knex("waste_items")
+    .select("created_at")
+    .count("* as count")
+    .groupBy("created_at");
+
+    const formattedData = [['Date', 'Count']];
+    dateData.forEach(item => {
+        formattedData.push([item.created_at, item.count]);
+    });
+
+    res.status(200).json(formattedData);
+} catch(error) {
+    res.status(500).json({message: `Unable to count by category:, ${error}`})
+}
+}
+
+
 
 module.exports = {
   wasteItems,
   addWasteItem,
   editWasteItem,
   deleteWasteItem,
-  wastedItemsByCategory
+  wastedItemsByCategory,
+  wastedItemsByDate
 };
