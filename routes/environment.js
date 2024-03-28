@@ -6,6 +6,6 @@ router.route("/").post(environmentController.addEnvironmentalImpacts);
 
 router.route("/carbon").get(environmentController.getTotalC02Emissions);
 
-router.route("/:id").get(environmentController.environmentImpact);
+router.route("/:name").get(environmentController.environmentImpact);
 
 module.exports = router;

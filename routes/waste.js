@@ -7,6 +7,9 @@ router
   .get(wasteController.wasteItems)
   .post(wasteController.addWasteItem);
 
+router  
+  .route("/recipe")
+  .get(wasteController.mostWastedItem);
 router
   .route("/pie-data")
   .get(wasteController.wastedItemsByCategory);

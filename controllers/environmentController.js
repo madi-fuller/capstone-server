@@ -3,12 +3,12 @@ const knex = require("knex")(require("../knexfile.js"));
 const environmentImpact = async (req, res) => {
   try {
     const data = await knex("environmental_impacts").where({
-      id: req.params.id,
+      name: req.params.name,
     });
 
     if (data.length === 0) {
       return res.status(404).json({
-        message: `Item with ID ${req.params.id} was not found`,
+        message: `Item with ID ${req.params.name} was not found`,
       });
     }
     res.status(200).json(data);

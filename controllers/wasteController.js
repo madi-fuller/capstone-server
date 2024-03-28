@@ -109,7 +109,25 @@ const wastedItemsByDate = async (_req, res) => {
 }
 }
 
+const mostWastedItem = async (_req, res) => {
+  try {
+    const mostWasted = await knex("waste_items")
+    .select('name')
+    .count('* as waste_count')
+    .groupBy('name')
+    .orderBy('waste_count', 'desc')
+    .limit(1);
 
+    if(mostWasted.length > 0) {
+    const mostWastedIngredient = mostWasted[0].name;
+    res.send(mostWastedIngredient)
+    } else {
+      res.status(404).send({ error: "No data found"});
+    }
+  } catch (error) {
+    res.status(500).send({error: "Internal server error"});
+  }
+}
 
 module.exports = {
   wasteItems,
@@ -117,5 +135,6 @@ module.exports = {
   editWasteItem,
   deleteWasteItem,
   wastedItemsByCategory,
-  wastedItemsByDate
+  wastedItemsByDate,
+  mostWastedItem
 };
