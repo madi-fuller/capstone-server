@@ -13,12 +13,12 @@ const userProfile = async (req, res) => {
 
 const addUser = async (req, res) => {
     try {
-        const {name, reason_for_reducing} = req.body;
+        const {name,username, password, reason_for_reducing} = req.body;
 
-        if(!name || !reason_for_reducing) {
+        if(!name || !reason_for_reducing || !username || !password) {
             return res.status(400).json({message: "Missing required fields"});
         }
-        const newUser = {name, reason_for_reducing};
+        const newUser = {name, username, password, reason_for_reducing};
         const result = await knex("users").insert(newUser);
         const newUserId = result[0];
         const createdUser = await knex("users").where({id: newUserId});
